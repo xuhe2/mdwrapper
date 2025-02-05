@@ -3,6 +3,8 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"path/filepath"
+	"strings"
 	"sync"
 
 	"github.com/spf13/cobra"
@@ -19,8 +21,15 @@ var rootCmd = &cobra.Command{
 			fmt.Println("Please provide a markdown file")
 			os.Exit(1)
 		}
+		// get zip file name
+		zipFileName, err := cmd.Flags().GetString("zip")
+		if err != nil {
+			// get zip file name from first arg
+			firstFileName := filepath.Base(args[0])
+			zipFileName = strings.Split(firstFileName, ".")[0] + ".zip"
+		}
 		// create a file for wrapper
-		file, err := os.Create("./main.zip")
+		file, err := os.Create(zipFileName)
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
