@@ -2,7 +2,6 @@ package core
 
 import (
 	"io"
-	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -12,6 +11,8 @@ import (
 const (
 	NormalRefRegex = `\[(?P<label>[^\]]+)\]\((?P<ref>.*)\)`
 	HTMLRefRegex   = `<a href="(?P<ref>[^"]*)"[^>]*>(?P<label>.*?)</a>`
+
+	URLRegex = `(?P<url>https?://[^\s]+)`
 )
 
 var RefRegexs = []string{NormalRefRegex, HTMLRefRegex}
@@ -58,10 +59,7 @@ func (f *MarkdownFile) Read(p []byte) (n int, err error) {
 }
 
 func isURL(s string) bool {
-	if _, err := url.ParseRequestURI(s); err == nil {
-		return true
-	}
-	return false
+	return regexp.MustCompile(URLRegex).MatchString(s)
 }
 
 func (f *MarkdownFile) GetFileRefs() []string {

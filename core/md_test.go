@@ -29,3 +29,22 @@ func TestMarkdownFile(t *testing.T) {
 	fmt.Printf("%+v\n", md.GetFileRefs())
 	fmt.Printf("%+v\n", md.GetURLs())
 }
+
+func TestIsURL(t *testing.T) {
+	url := "https://www.baidu.com"
+	filePath := "./main.md"
+	linuxAbsFilePath := "/home/main.md"
+	windowsAbsFilePath := "D:\\main.md"
+	if !isURL(url) {
+		t.Errorf("isURL() failed in url %s", url)
+	}
+	if isURL(filePath) {
+		t.Errorf("isURL() failed in filePath %s", filePath)
+	}
+	if isURL(linuxAbsFilePath) {
+		t.Errorf("isURL() failed in linuxAbsFilePath %s", linuxAbsFilePath)
+	}
+	if isURL(windowsAbsFilePath) {
+		t.Errorf("isURL() failed in windowsAbsFilePath %s", windowsAbsFilePath)
+	}
+}
