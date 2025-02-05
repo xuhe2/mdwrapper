@@ -22,7 +22,7 @@ var rootCmd = &cobra.Command{
 			os.Exit(1)
 		}
 		// get zip file name
-		zipFileName, err := cmd.Flags().GetString("zip")
+		zipFileName, err := cmd.Flags().GetString("output")
 		if err != nil {
 			// get zip file name from first arg
 			firstFileName := filepath.Base(args[0])
@@ -66,4 +66,8 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+}
+
+func init() {
+	rootCmd.Flags().StringP("output", "o", "", "output zip file name")
 }
