@@ -27,7 +27,7 @@ go install github.com/xuhe2/mdwrapper@latest
 # How to use?
 
 ```shell
-./bin/mdwrapper /path/to/markdown
+mdwrapper /path/to/markdown
 ```
 > The default output is a .zip file, with the same filename as the markdown file.
 - Use the -o parameter to specify the output .zip file name.
