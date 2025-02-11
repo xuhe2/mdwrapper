@@ -14,6 +14,16 @@ mdwrapper是一个用来打包markdown文件的工具,它可以识别markdown文
 > 编辑PDF文件并不方便,所以,保留原本的markdown文件,方便后续的修改和分享
 > 如果你是typora用户,typora图片的默认存储路径是在自己的数据文件夹下,查找对应的图片不够方便.
 
+# 如何下载
+
+## Go
+
+```shell
+go install github.com/xuhe2/mdwrapper@latest
+```
+
+> 确保你已经安装了GO的环境
+
 # 怎么用
 
 ```shell

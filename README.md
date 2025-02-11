@@ -14,6 +14,16 @@ mdwrapper is a tool for packaging markdown files. It can recognize the reference
 > Editing PDF files is not convenient, so keep the original markdown files for later modification and sharing.
 > If you are a typora user, the default storage path for typora images is in its own data folder, and finding the corresponding images is not convenient enough.
 
+# How to install
+
+## Go
+
+```shell
+go install github.com/xuhe2/mdwrapper@latest
+```
+
+> Make sure you have installed the GO environment
+
 # How to use?
 
 ```shell
