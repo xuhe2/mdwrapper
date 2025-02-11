@@ -23,7 +23,7 @@ var rootCmd = &cobra.Command{
 		}
 		// get zip file name
 		zipFileName, err := cmd.Flags().GetString("output")
-		if err != nil {
+		if err != nil || zipFileName == "" {
 			// get zip file name from first arg
 			firstFileName := filepath.Base(args[0])
 			zipFileName = strings.Split(firstFileName, ".")[0] + ".zip"
