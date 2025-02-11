@@ -8,7 +8,11 @@
 MAIN_FILE := main.go
 
 BIN_DIR := ./bin
-APP := mdwrapper # the name of the application
+
+APP := mdwrapper
+ifeq ($(OS),Windows_NT)
+    APP := $(APP).exe
+endif
 
 # the name of the docker image
 # DOCKER_IMAGE_NAME := docker-image-name-example
