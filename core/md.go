@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	NormalRefRegex = `\[(?P<label>[^\]]+)\]\((?P<ref>.*)\)`
+	NormalRefRegex = `\[(?P<label>[^\]]+)\]\((?P<ref>.*?)\)`
 	HTMLRefRegex   = `<a href="(?P<ref>[^"]*)"[^>]*>(?P<label>.*?)</a>`
 
 	URLRegex = `(?P<url>https?://[^\s]+)`
