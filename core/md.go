@@ -25,10 +25,12 @@ type MarkdownFile struct {
 	offset int // this is the offset of the reader
 }
 
+// NewMarkdownFile creates a new MarkdownFile, it is empty
 func NewMarkdownFile() *MarkdownFile {
 	return &MarkdownFile{}
 }
 
+// Open opens a MarkdownFile from a file path
 func (f *MarkdownFile) Open(path string) error {
 	file, err := os.Open(path)
 	if err != nil {
@@ -49,6 +51,7 @@ func (f *MarkdownFile) Open(path string) error {
 	return nil
 }
 
+// Read reads from the MarkdownFile, it is a wrapper of io.Reader
 func (f *MarkdownFile) Read(p []byte) (n int, err error) {
 	if f.offset >= len(f.Content) {
 		return 0, io.EOF
@@ -58,10 +61,14 @@ func (f *MarkdownFile) Read(p []byte) (n int, err error) {
 	return n, nil
 }
 
+// check if a string is a URL
 func isURL(s string) bool {
 	return regexp.MustCompile(URLRegex).MatchString(s)
 }
 
+// GetFileRefs returns all the file references in the MarkdownFile
+//
+// no matter it is a normal reference or a HTML reference
 func (f *MarkdownFile) GetFileRefs() []string {
 	refs := make([]string, 0)
 	for _, regex := range RefRegexs {
@@ -78,6 +85,7 @@ func (f *MarkdownFile) GetFileRefs() []string {
 	return refs
 }
 
+// GetURLs returns all the URLs in the MarkdownFile
 func (f *MarkdownFile) GetURLs() []string {
 	refs := make([]string, 0)
 	for _, regex := range RefRegexs {
