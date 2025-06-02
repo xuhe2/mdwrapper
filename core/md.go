@@ -30,25 +30,28 @@ func NewMarkdownFile() *MarkdownFile {
 	return &MarkdownFile{}
 }
 
-// Open opens a MarkdownFile from a file path
-func (f *MarkdownFile) Open(path string) error {
+// init MarkdownFile with a file path
+func (f *MarkdownFile) WithFilePath(path string) *MarkdownFile {
+	// 打开指定路径的文件
 	file, err := os.Open(path)
 	if err != nil {
-		return err
+		// 如果打开文件失败，返回 nil
+		return nil
 	}
+	// 关闭文件
 	defer file.Close()
 
 	// Read all content from the file
 	content, err := io.ReadAll(file)
 	if err != nil {
-		return err
+		return nil
 	}
 
 	f.Name = strings.Split(path, "/")[len(strings.Split(path, "/"))-1]
 	f.Path, _ = filepath.Abs(path)
 	f.Content = string(content)
 
-	return nil
+	return f
 }
 
 // Read reads from the MarkdownFile, it is a wrapper of io.Reader

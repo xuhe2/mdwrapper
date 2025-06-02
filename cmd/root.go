@@ -45,9 +45,9 @@ var rootCmd = &cobra.Command{
 			go func() {
 				defer wg.Done()
 				// open the markdown file
-				mdFile := core.NewMarkdownFile()
-				if err := mdFile.Open(path); err != nil {
-					fmt.Println(err)
+				mdFile := core.NewMarkdownFile().WithFilePath(path)
+				if mdFile == nil {
+					fmt.Println("Please provide a valid markdown file")
 					return
 				}
 				// TODO: add logic to wrap the markdown file

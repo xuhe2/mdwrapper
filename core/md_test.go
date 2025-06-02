@@ -15,8 +15,9 @@ func TestMarkdownFile(t *testing.T) {
 	}
 	// open a file
 	filePath := "../test/main.md"
-	if err := md.Open(filePath); err != nil {
-		t.Error(err)
+	if md = NewMarkdownFile().WithFilePath(filePath); md == nil {
+		t.Error("Open markdown file failed")
+		return
 	}
 	if md.Name != strings.Split(filePath, "/")[len(strings.Split(filePath, "/"))-1] {
 		t.Error("Open() failed")
